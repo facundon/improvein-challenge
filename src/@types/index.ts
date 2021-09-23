@@ -1,2 +1,10 @@
 export type { User, LoginInputs } from "./user"
-export type { RequestResponse, Band, Genre, Album } from "./api"
+export type {
+   RequestResponse,
+   BandResponse,
+   Band,
+   Genre,
+   Album,
+   Sort,
+   SortOrder,
+} from "./api"

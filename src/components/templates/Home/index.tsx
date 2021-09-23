@@ -1,11 +1,11 @@
 import { ReactElement } from "react"
 
 export interface HomeProps {
-   message: ReactElement
+   bandTable: ReactElement
 }
 
-const Home: React.FC<HomeProps> = ({ message }) => {
-   return <div>{message}</div>
+const Home: React.FC<HomeProps> = ({ bandTable }) => {
+   return <div>{bandTable}</div>
 }
 
 export default Home

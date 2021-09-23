@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react"
+import { useCallback, useMemo, useState } from "react"
 import { RequestResponse } from "../@types"
 import { CustomServices } from "../services"
 
@@ -23,10 +23,10 @@ const useRequest = <
             if (response.status !== 200) {
                setError(response.statusText)
             }
-            setResponse(response.data.result)
+            setResponse(response.data as Result)
             setError(undefined)
             setIsLoading(false)
-            return response.data.result
+            return response.data as Result
          } catch (error: any) {
             if (error.response) {
                setError(error.response.data)
@@ -43,7 +43,10 @@ const useRequest = <
       [service]
    )
 
-   return { run, response, error, isLoading }
+   return useMemo(
+      () => ({ run, response, error, isLoading }),
+      [error, isLoading, response, run]
+   )
 }
 
 export default useRequest
