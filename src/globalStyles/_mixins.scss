@@ -1,0 +1,17 @@
+@use "./functions" as f;
+
+@mixin pseudo-border(
+   $type: "before",
+   $position: "bottom",
+   $color: f.getColor("theme", "font", 0.3)
+) {
+   &::#{$type} {
+      content: "";
+      background-color: $color;
+      position: absolute;
+      #{$position}: 0;
+      left: 0;
+      width: 100%;
+      height: 1px;
+   }
+}

@@ -1,0 +1,28 @@
+$color: (
+   "theme": (
+      background: #242424,
+      primaryLighter: #253253,
+      primary: #1b243b,
+      primaryDarker: #121726,
+      secondaryLighter: #ce88e9,
+      secondary: #915ea6,
+      secondaryDarker: #502c61,
+      font: #e6e6e6,
+   ),
+);
+
+$font: (
+   "size": (
+      title: 32px,
+      subtitle: 24px,
+      primary: 18px,
+      secondary: 14px,
+   ),
+   "weight": (
+      title: 600,
+      primary: 400,
+      secondary: 200,
+   ),
+);
+
+$margin-appbar: 5em;

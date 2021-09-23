@@ -1,0 +1,30 @@
+@use "variables" as v;
+@use "functions" as f;
+
+body {
+   font-family: Roboto, -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+      "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+      "Helvetica Neue", sans-serif;
+   -webkit-font-smoothing: antialiased;
+   -moz-osx-font-smoothing: grayscale;
+   .common-case {
+      button {
+         text-transform: none;
+      }
+   }
+   .with-icon {
+      svg {
+         margin-right: 0.4em;
+      }
+   }
+   input:-webkit-autofill,
+   input:-webkit-autofill:hover,
+   input:-webkit-autofill:focus,
+   input:-webkit-autofill:active {
+      transition: background-color ease-in-out 0s;
+      transition-delay: 5000s;
+   }
+   input:-webkit-autofill {
+      -webkit-text-fill-color: f.getColor("theme", "font") !important;
+   }
+}

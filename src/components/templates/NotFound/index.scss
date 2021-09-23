@@ -1,0 +1,7 @@
+@use "../../../globalStyles/variables" as v;
+
+.not-found {
+   &-wrapper {
+      margin-top: v.$margin-appbar;
+   }
+}
