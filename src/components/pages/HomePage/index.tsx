@@ -1,7 +1,7 @@
 import { useTitle } from "hookrouter"
 import { useEffect } from "react"
 import { useBands, useUser } from "../../../hooks"
-import { ErrorMsg } from "../../atoms"
+import { ErrorMsg, SearchBar } from "../../atoms"
 import { BandTable } from "../../molecules"
 import { Home } from "../../templates"
 
@@ -17,6 +17,7 @@ const HomePage: React.FC<HomePageProps> = () => {
       getBands.run()
    }, [])
 
+   const searchBar = <SearchBar getBands={getBands} />
    const bandTable = bands ? (
       <BandTable bands={bands} />
    ) : (
@@ -24,7 +25,11 @@ const HomePage: React.FC<HomePageProps> = () => {
    )
 
    return user ? (
-      <Home bandTable={bandTable} isLoading={getBands.isLoading} />
+      <Home
+         searchBar={searchBar}
+         bandTable={bandTable}
+         isLoading={getBands.isLoading}
+      />
    ) : (
       <h3>You must be Loged in to see the table</h3>
    )

@@ -2,18 +2,22 @@ import { AxiosResponse } from "axios"
 
 export type RequestResponse<T> = Promise<AxiosResponse<T>>
 
-export type BandResponse = {
+type BaseBand = {
    country: string
-   genreCode: string
    id: number
-   members: { name: string }[]
    name: string
    year: number
 }
 
-export type Band = Omit<BandResponse, "genreCode" | "members"> & {
+export type BandResponse = BaseBand & {
+   genreCode: string
+   members: { name: string }[]
+}
+
+export type Band = BaseBand & {
    genre: string
    members: string[]
+   albums: Album[] | null
 }
 
 export type Genre = {
@@ -23,7 +27,7 @@ export type Genre = {
 
 export type Album = {
    id: number
-   bandId: number
+   bandId?: number
    name: string
    year: number
 }

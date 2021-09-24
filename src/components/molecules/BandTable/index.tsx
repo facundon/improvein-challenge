@@ -17,33 +17,35 @@ interface BandTableProps {
 
 const BandTable: FunctionComponent<BandTableProps> = ({ bands }) => {
    return (
-      <TableContainer component={Paper}>
-         <Table stickyHeader>
-            <TableHead>
-               <TableRow>
-                  <TableCell width="10%" />
-                  <TableCell width="15%">Name</TableCell>
-                  <TableCell align="left" width="15%">
-                     Country
-                  </TableCell>
-                  <TableCell align="left" width="15%">
-                     Year
-                  </TableCell>
-                  <TableCell align="left" width="20%">
-                     Genre
-                  </TableCell>
-                  <TableCell align="left" width="25%">
-                     Members
-                  </TableCell>
-               </TableRow>
-            </TableHead>
-            <TableBody>
-               {bands.map(band => (
-                  <ExpansibleTableRow key={band.id} band={band} />
-               ))}
-            </TableBody>
-         </Table>
-      </TableContainer>
+      <Paper sx={{ width: "100%", overflow: "hidden" }}>
+         <TableContainer sx={{ maxHeight: 440 }}>
+            <Table stickyHeader>
+               <TableHead>
+                  <TableRow>
+                     <TableCell width="10%" />
+                     <TableCell width="15%">Name</TableCell>
+                     <TableCell align="left" width="15%">
+                        Country
+                     </TableCell>
+                     <TableCell align="left" width="15%">
+                        Year
+                     </TableCell>
+                     <TableCell align="left" width="20%">
+                        Genre
+                     </TableCell>
+                     <TableCell align="left" width="25%">
+                        Members
+                     </TableCell>
+                  </TableRow>
+               </TableHead>
+               <TableBody>
+                  {bands.map(band => (
+                     <ExpansibleTableRow key={band.id} band={band} />
+                  ))}
+               </TableBody>
+            </Table>
+         </TableContainer>
+      </Paper>
    )
 }
 

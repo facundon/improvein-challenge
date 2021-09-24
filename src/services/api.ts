@@ -1,17 +1,29 @@
-import { BandResponse, Genre, Sort, SortOrder } from "../@types"
+import { Album, BandResponse, Genre, Sort, SortOrder } from "../@types"
 import { apiRequest } from "../requests/instances"
+import { parameterizeArray } from "../utils/text"
 
-const getBands = (sortBy: Sort = "name", order: SortOrder = "asc") =>
-   apiRequest.get<BandResponse[]>(`./bands?_sort=${sortBy}&_order=${order}`)
+const getBands = (
+   sortBy: Sort = "name",
+   order: SortOrder = "asc",
+   filter?: string
+) =>
+   apiRequest.get<BandResponse[]>(
+      `./bands?_sort=${sortBy}&_order=${order}${
+         filter ? "&name=" + filter : ""
+      }`
+   )
 
 const getGenre = (genreCode: string[]) => {
-   const paramsArr = genreCode.map(g => `code=${g}&`)
-   let params = paramsArr.join("")
-   params = params.slice(0, params.length - 1)
+   const params = parameterizeArray(genreCode, "code")
    return apiRequest.get<Genre[]>(`./genre?${params}`)
 }
 
-const apiServices = { getBands, getGenre }
+const getAlbums = (bandId: number[]) => {
+   const params = parameterizeArray(bandId, "bandId")
+   return apiRequest.get<Album[]>(`./albums?${params}`)
+}
+
+const apiServices = { getBands, getGenre, getAlbums }
 
 export type ApiServices = typeof apiServices[keyof typeof apiServices]
 export default apiServices
