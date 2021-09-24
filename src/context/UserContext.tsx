@@ -1,16 +1,39 @@
-import { useState, useMemo, createContext } from "react"
-import { User } from "../@types"
+import { useState, useMemo, createContext, useCallback } from "react"
+import { LoginInputs, User } from "../@types"
+import { TEST_USER } from "../config/app"
 
 export const UserContext = createContext({})
 
-const UserProvider: React.FC = ({ children }) => {
+export interface UserProviderProps {
+   user: User | null
+   login: (data: LoginInputs) => boolean
+   logout: () => void
+}
+
+const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
    const [user, setUser] = useState<User | null>(null)
+
+   const login = useCallback((data: LoginInputs) => {
+      if (
+         data.email !== TEST_USER.email ||
+         data.password !== TEST_USER.password
+      ) {
+         setUser(null)
+         return false
+      }
+      setUser({ email: TEST_USER.email, name: TEST_USER.name })
+      return true
+   }, [])
+
+   const logout = () => setUser(null)
 
    const providerUser = useMemo(
       () => ({
          user,
+         login,
+         logout,
       }),
-      [user]
+      [user, login]
    )
 
    return (

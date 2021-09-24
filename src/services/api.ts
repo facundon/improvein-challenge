@@ -8,7 +8,6 @@ const getGenre = (genreCode: string[]) => {
    const paramsArr = genreCode.map(g => `code=${g}&`)
    let params = paramsArr.join("")
    params = params.slice(0, params.length - 1)
-   console.log(params)
    return apiRequest.get<Genre[]>(`./genre?${params}`)
 }
 

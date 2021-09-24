@@ -1,9 +1,6 @@
-import { CircularProgress } from "@mui/material"
 import { useTitle } from "hookrouter"
 import { useEffect } from "react"
-import { useRequest } from "../../../hooks"
-import useBands from "../../../hooks/useBands"
-import { apiServices } from "../../../services"
+import { useBands, useUser } from "../../../hooks"
 import { ErrorMsg } from "../../atoms"
 import { BandTable } from "../../molecules"
 import { Home } from "../../templates"
@@ -13,8 +10,10 @@ export interface HomePageProps {}
 const HomePage: React.FC<HomePageProps> = () => {
    useTitle("Home")
    const { bands, getBands } = useBands()
+   const { user } = useUser()
 
    useEffect(() => {
+      if (!user) return
       getBands.run()
    }, [])
 
@@ -24,10 +23,10 @@ const HomePage: React.FC<HomePageProps> = () => {
       <ErrorMsg msg={getBands.error!} />
    )
 
-   return getBands.isLoading ? (
-      <CircularProgress />
+   return user ? (
+      <Home bandTable={bandTable} isLoading={getBands.isLoading} />
    ) : (
-      <Home bandTable={bandTable} />
+      <h3>You must be Loged in to see the table</h3>
    )
 }
 

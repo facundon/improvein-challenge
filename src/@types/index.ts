@@ -1,4 +1,4 @@
-export type { User, LoginInputs } from "./user"
+export type { User, LoginInputs, UserContextType } from "./user"
 export type {
    RequestResponse,
    BandResponse,
