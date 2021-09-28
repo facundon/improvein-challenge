@@ -4,11 +4,7 @@ import { TEST_USER } from "../config/app"
 
 export const UserContext = createContext({})
 
-export interface UserProviderProps {
-   user: User | null
-   login: (data: LoginInputs) => boolean
-   logout: () => void
-}
+export interface UserProviderProps {}
 
 const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
    const [user, setUser] = useState<User | null>(null)

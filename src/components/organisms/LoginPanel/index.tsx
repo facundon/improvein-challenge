@@ -34,12 +34,7 @@ const LoginPanel: React.FC<LoginPanelProps> = ({
             flexDirection="column"
             marginBottom={3}
          >
-            <EmailLogin
-               closeLogin={() => {
-                  onClose()
-                  onLoginSuccess()
-               }}
-            />
+            <EmailLogin />
          </Box>
       </BaseDialog>
    )
